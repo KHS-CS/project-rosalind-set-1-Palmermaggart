@@ -1,17 +1,20 @@
 
-"""
-Transcribing DNA into RNA 
-url: http://rosalind.info/problems/rna/
+public class DNAtoRNA {
 
-Given: A DNA string  having length at most 1000 nt.
-Return: The transcribed RNA string of .
-"""
+    public static String dna2rna(String sequence) {
+        return sequence.replace('T', 't');   
+    }
 
-def dna2rna(string):
-    return string.replace('T','U')
+    public static void main(String[] args) throws IOException {
 
-if __name__ == "__main__":
-    with open("../data/rosalind_rna.txt", 'r') as f:
-        string = f.readline().strip()
-        rst = dna2rna(string)
-        print(rst)
+        BufferedReader br = new BufferedReader(
+                new FileReader("../data/rosalind_rna.txt"));
+
+        String sequence = br.readLine().trim();
+        br.close();
+
+        String result = dna2rna(sequence);
+
+        System.out.println(result);
+    }
+}
