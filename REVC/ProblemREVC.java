@@ -1,24 +1,32 @@
 
-/**
- * Write a description of class ProblemRNA here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProblemREVC {
-    public static void main() {
-        // replace this string with the one from Project Rosalind
-        final String inputDNA = "AAAACCCGGT";
-        final String output = reverseComplement(inputDNA);
-        // you can copy and paste from the terminal window into 
-        //   Project Rosalind to check your answer
-        System.out.println(output);
+public class DNAstrand {
+
+    public static String reverseComplement(String sequence) {
+        String strand = "";
+
+        for (int i = sequence.length() - 1; i >= 0; i--) {
+            char base = sequence.charAt(i);
+
+            if (base == 'A') {
+                strand += 'T';
+            } else if (base == 'T') {
+                strand += 'A';
+            } else if (base == 'C') {
+                strand += 'G';
+            } else if (base == 'G') {
+                strand += 'C';
+            }
+        }
+
+        return strand;
     }
-        
-    // This should take the given string and return a String 
-    //   where As and Ts are swapped, Cs and Gs are swapped, 
-    //   and is reversed. 
-    private static String reverseComplement(String dnaString) {
-        return "ACCGGGTTTT";
-    }    
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("../data/rosalind_revc.txt"));
+        String sequence = br.readLine().trim();
+        br.close();
+
+        String strand = reverseComplement(sequence);
+        System.out.println(strand);
+    }
 }

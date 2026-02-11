@@ -1,22 +1,15 @@
 
-/**
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProblemHAMM {
-    public static void main() {
-        // replace this string with the one from Project Rosalind
-        final String inputDNA1 = "GAGCCTACTAACGGGAT";
-        final String inputDNA2 = "CATCGTAATGACGGCCT";
-        final int output = hammingDistance(inputDNA1, inputDNA2);
-        // you can copy and paste from the terminal window into 
-        //   Project Rosalind to check your answer
-        System.out.println(output);
-    }
-        
-    // This should take the given strings and return the number
-    //   of times they differ at the same location
-    private static int hammingDistance(String a, String b) {
-        return 7;
-    }    
-}
+public class Hamming {
+
+    public static int hamm(String string1, String string2) {
+        int distance = 0;
+
+        if (string1.length() != string2.length()) {
+            throw new IllegalArgumentException("Strings must be equal length");
+        }
+
+        for (int i = 0; i < string1.length(); i++) {
+            if (string1.charAt(i) != string2.charAt(i)) {
+                distance++;
+            }
+        }

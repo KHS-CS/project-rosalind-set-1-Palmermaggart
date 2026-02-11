@@ -1,22 +1,20 @@
 
-/**
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProblemRNA
-{
-    public static void main() {
-        // replace this string with the one from Project Rosalind
-        final String inputDNA = "GATGGAACTTGACTACGTAAATT";
-        final String output = transcribeDNAtoRNA(inputDNA);
-        // you can copy and paste from the terminal window into 
-        //   Project Rosalind to check your answer
-        System.out.println(output);
+public class DNAtoRNA {
+
+    public static String dna2rna(String sequence) {
+        return sequence.replace('T', 't');   
     }
-        
-    // This should take the given string and return a string
-    //   that replaces 'T' with 'U'
-    private static String transcribeDNAtoRNA(String dnaString) {
-        return "GAUGGAACUUGACUACGUAAAUU";
-    }    
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(
+                new FileReader("../data/rosalind_rna.txt"));
+
+        String sequence = br.readLine().trim();
+        br.close();
+
+        String result = dna2rna(sequence);
+
+        System.out.println(result);
+    }
 }

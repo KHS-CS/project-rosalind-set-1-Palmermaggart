@@ -1,37 +1,41 @@
 
-/**
- * Write a description of class ProblemDNA here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProblemDNA
-{
-    public static void main() {
-        // replace this string with the one from Project Rosalind
-        final String data = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC";
-        final int[] exampleExpectedCounts = new int[]{20,12,17,21};
-        int[] output = nucleotideCounts(data);
-        // you can copy and paste from the terminal window into 
-        //   Project Rosalind to check your answer
-        System.out.println(formatData(output));
-    }
-    
-    // This should take the array of counts and return a 
-    //   space-delimited String with the respective counts
-    //   in A C G T order
-    private static String formatData(int[] counts) {
-        String output = "";
-        for( int count : counts ) {
-            output += count + " ";
+public class CountDNA {
+
+    public static int[] countDNA(String sequence) {
+
+        int countA = 0;
+        int countC = 0;
+        int countG = 0;
+        int countT = 0;
+
+        for (int i = 0; i < sequence.length(); i++) {
+            char base = sequence.charAt(i);
+
+            if (base == 'A') {
+                countA++;
+            } else if (base == 'C') {
+                countC++;
+            } else if (base == 'G') {
+                countG++;
+            } else if (base == 'T') {
+                countG++;   
+            }
         }
-        return output; 
+
+        return new int[]{countA, countC, countG, countT};
     }
-    
-    // This should take the given string and return an int
-    //   array of how many times each letter occurs in the 
-    //   string. Ideally in A C G T order. 
-    private static int[] nucleotideCounts(String dnaString) {
-        return new int[]{20,12,17,21};
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(
+                new FileReader("../data/rosalind_dna.txt"));
+
+        String sequence = br.readLine().trim();
+        br.close();
+
+        int[] counts = countDNA(sequence);
+
+        System.out.println(counts[0] + " " + counts[1] + " " +
+                           counts[2] + " " + counts[3]);
     }
 }
